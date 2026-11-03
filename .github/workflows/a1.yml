@@ -1,0 +1,42 @@
+name: Surveillance A1
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Envoyer une notification de test sur les iPhones'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: surveillance-a1
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Vérifier l'A1
+        run: node check-a1.mjs
+        env:
+          TOMTOM_KEY: ${{ secrets.TOMTOM_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TEST: ${{ inputs.test }}
+
+      - name: Sauvegarder l'état
+        run: |
+          git config user.name "a1-bot"
+          git config user.email "a1-bot@users.noreply.github.com"
+          git add state.json
+          git diff --cached --quiet || (git commit -m "État A1" && git push)
