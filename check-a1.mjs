@@ -12,7 +12,7 @@ const CONFIG = {
 };
 
 const { TOMTOM_KEY, NTFY_TOPIC, TEST, MOCK_FILE, DRY_RUN } = process.env;
-console.log(`Longueur de la clé TomTom : ${(TOMTOM_KEY ?? '').length} caractères (attendu : 32)`);
+console.log(`Clé TomTom : ${(TOMTOM_KEY ?? '').length} caractères, tirets : ${(TOMTOM_KEY ?? '').includes('-') ? 'oui (ce n\'est pas la bonne clé)' : 'non'}`);
 
 // ---------- Récupération des incidents ----------
 
