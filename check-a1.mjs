@@ -12,7 +12,7 @@ const CONFIG = {
 };
 
 const { TOMTOM_KEY, NTFY_TOPIC, TEST, MOCK_FILE, DRY_RUN } = process.env;
-console.log(`Clé TomTom : ${(TOMTOM_KEY ?? '').length} caractères, tirets : ${(TOMTOM_KEY ?? '').includes('-') ? 'oui (ce n\'est pas la bonne clé)' : 'non'}`);
+console.log(`Clé TomTom : ${(TOMTOM_KEY ?? '').length} caractères, c'est l'App ID : ${(TOMTOM_KEY ?? '').trim() === 'f12c36db-8fe0-466b-805c-3f002ca5d9ce' ? 'oui' : 'non'}, commence par X : ${(TOMTOM_KEY ?? '').trim().startsWith('X') ? 'oui' : 'non'}`);
 
 // ---------- Récupération des incidents ----------
 
