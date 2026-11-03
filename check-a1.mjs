@@ -12,7 +12,6 @@ const CONFIG = {
 };
 
 const { TOMTOM_KEY, NTFY_TOPIC, TEST, MOCK_FILE, DRY_RUN } = process.env;
-console.log(`Clé TomTom : ${(TOMTOM_KEY ?? '').length} caractères, c'est l'App ID : ${(TOMTOM_KEY ?? '').trim() === 'f12c36db-8fe0-466b-805c-3f002ca5d9ce' ? 'oui' : 'non'}, commence par X : ${(TOMTOM_KEY ?? '').trim().startsWith('X') ? 'oui' : 'non'}`);
 
 // ---------- Récupération des incidents ----------
 
@@ -116,7 +115,8 @@ async function main() {
   if (!TOMTOM_KEY && !MOCK_FILE) throw new Error('TOMTOM_KEY manquant');
 
   const etat = lireEtat();
-  const fermetures = fermeturesA1(await recupererIncidents());
+  const incidents = await recupererIncidents();
+  const fermetures = fermeturesA1(incidents);
   const actives = {};
 
   for (const inc of fermetures) {
@@ -133,7 +133,7 @@ async function main() {
   // ne désactive pas la surveillance après 60 jours sans activité.
   const jour = new Date().toLocaleDateString('fr-CA', { timeZone: 'Europe/Paris' });
   writeFileSync(CONFIG.fichierEtat, JSON.stringify({ jour, actives }, null, 2) + '\n');
-  console.log(`${fermetures.length} fermeture(s) en cours sur l'A1.`);
+  console.log(`${fermetures.length} fermeture(s) en cours sur l'A1 (${incidents.length} incident(s) dans la zone, routes : ${[...new Set(incidents.flatMap(i => i.properties.roadNumbers ?? []))].join(', ') || 'aucune'}).`);
 }
 
 main().catch(err => {
