@@ -1,10 +1,4 @@
 {
   "jour": "2026-11-06",
-  "actives": {
-    "TTI-67cc4989-8d64-4662-9300-4177541efebb-TTR38407861944056000": {
-      "from": "Roissy (Autoroute du Nord/A1)",
-      "to": "Roissy-en-France - D88 - D902A (Autoroute du Nord/A1)",
-      "sens": "Lille / Creil → Paris"
-    }
-  }
+  "actives": {}
 }
