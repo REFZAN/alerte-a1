@@ -6,14 +6,9 @@
       "to": "Roissy-en-France - D88 - D902A (Autoroute du Nord/A1)",
       "sens": "Paris → Creil / Lille"
     },
-    "TTI-67cc4989-8d64-4662-9300-4177541efebb-TTR38462684556232000": {
-      "from": "Roissy-en-France - D88 - D902A (Autoroute du Nord/A1)",
-      "to": "Roissy (Autoroute du Nord/A1)",
-      "sens": "Paris → Creil / Lille"
-    },
     "TTI-67cc4989-8d64-4662-9300-4177541efebb-TTR38407861944056000": {
       "from": "Plailly (Parc Astérix) (Autoroute du Nord/A1)",
-      "to": "Le Blanc-Mesnil - N2 (Autoroute du Nord/A1)",
+      "to": "Roissy-en-France - D88 - D902A (Autoroute du Nord/A1)",
       "sens": "Lille / Creil → Paris"
     }
   }
